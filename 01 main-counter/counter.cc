@@ -30,9 +30,8 @@ int main(int argc, char** argv) {
   int i;
   for (i = 1; i <= count; i++) {
     std::cout << "Process: " << getpid() << " " << i << "\n";
-    //std::cout << "Process loop - " << i << "\n";
   }
 
-  // exit with parameter value
+  // exit status is parameter value
   exit(count);
 }
