@@ -30,7 +30,7 @@ int main(int argc, char** argv) {
         std::cout << "Parent PID: " << getppid() << "\n";
 
         // this requires counter.cc to be compiled to "counter" in the same directory
-        execl("./counter", "counter", "5", (char*) NULL);
+        execl("./counter.out", "counter", "5", (char*) NULL);
 
         // ensure no execl errors
         assert(errno == 0);
