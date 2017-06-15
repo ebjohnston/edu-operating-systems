@@ -13,10 +13,10 @@ void respond(int signal) {
     string sigName;
 
     switch(signal) {
-        case SIGHUP:     sigName = "SIGHUP"; break;
-        case SIGUSR1:    sigName = "SIGUSR1"; break;
-        case SIGIO:    sigName = "SIGIO"; break;
-        default:    sigName = "[signal not recognized - check source]"; break;
+        case SIGHUP:    sigName = "SIGHUP"; break;
+        case SIGUSR1:   sigName = "SIGUSR1"; break;
+        case SIGIO:     sigName = "SIGIO"; break;
+        default:        sigName = "[signal not recognized - check source]"; break;
     }
     cout << "Signal received from child: " << sigName << "\n";
 }
