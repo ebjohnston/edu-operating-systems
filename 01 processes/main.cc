@@ -6,9 +6,9 @@
 #include <sys/wait.h>   // needed for wait
 #include <unistd.h>     // needed for fork, getpid, getppid, execl
 
+using namespace std;
+
 int main(int argc, char** argv) {
-    // initialize errno without errors
-    errno = 0;
 
     int fpid = fork();
 
@@ -18,16 +18,17 @@ int main(int argc, char** argv) {
     if (fpid > 0) { // parent process
         int waitID, status;
 
+        // wait for child
         do {
             waitID = waitpid(fpid, &status, WUNTRACED | WCONTINUED);
             assert(waitID >= 0);
         } while(!WIFEXITED(status) && !WIFSIGNALED(status));
 
-        std::cout << "Process " << fpid << " exited with status: " << WEXITSTATUS(status) << "\n";
+        cout << "Process " << fpid << " exited with status: " << WEXITSTATUS(status) << "\n";
     }
     else { // child process
-        std::cout << "Child PID: " << getpid() << "\n";
-        std::cout << "Parent PID: " << getppid() << "\n";
+        cout << "Child PID: " << getpid() << "\n";
+        cout << "Parent PID: " << getppid() << "\n";
 
         // this requires counter.cc to be compiled to "counter" in the same directory
         execl("./counter.out", "counter", "5", (char*) NULL);
@@ -36,5 +37,6 @@ int main(int argc, char** argv) {
         assert(errno == 0);
     }
 
+    // terminate both child and parent after done executing
     exit(EXIT_SUCCESS);
 }
