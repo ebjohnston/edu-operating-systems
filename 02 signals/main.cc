@@ -22,7 +22,7 @@ void respond(int signal) {
 }
 
 int main(int argc, char** argv) {
-    struct sigaction *action = new (struct sigaction);
+    struct sigaction* action = new (struct sigaction);
     action->sa_handler = respond;
     sigemptyset(&(action->sa_mask));
 
