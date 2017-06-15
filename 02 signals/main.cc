@@ -13,29 +13,29 @@ void respond(int signal) {
     string sigName;
 
     switch(signal) {
-        case 1:     sigName = "SIGHUP"; break;
-        case 10:    sigName = "SIGUSR1"; break;
-        case 29:    sigName = "SIGIO"; break;
+        case SIGHUP:     sigName = "SIGHUP"; break;
+        case SIGUSR1:    sigName = "SIGUSR1"; break;
+        case SIGIO:    sigName = "SIGIO"; break;
         default:    sigName = "[signal not recognized - check source]"; break;
     }
     cout << "Signal received from child: " << sigName << "\n";
 }
 
 int main(int argc, char** argv) {
+    struct sigaction *action = new (struct sigaction);
+    action->sa_handler = respond;
+    sigemptyset(&(action->sa_mask));
+
+    assert(sigaction(SIGHUP, action, NULL) == 0);
+    assert(sigaction(SIGIO, action, NULL) == 0);
+    assert(sigaction(SIGUSR1, action, NULL) == 0);
+
     int fpid = fork();
 
     // ensure process forked successfully
     assert(fpid >= 0);
 
     if (fpid > 0) { // parent process
-        struct sigaction *action = new (struct sigaction);
-        action->sa_handler = respond;
-        sigemptyset(&(action->sa_mask));
-
-        assert(sigaction(SIGHUP, action, NULL) == 0);
-        assert(sigaction(SIGIO, action, NULL) == 0);
-        assert(sigaction(SIGUSR1, action, NULL) == 0);
-
         int waitID, status;
 
         // wait for child
