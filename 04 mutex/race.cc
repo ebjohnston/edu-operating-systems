@@ -44,8 +44,7 @@ void *foo (void *bar)
 
 int main(int argc, char **argv)
 {
-    int
-    iterations = strtol(argv[1], NULL, 10);
+    int iterations = strtol(argv[1], NULL, 10);
     pthread_t threads[NUM_THREADS];
 
     for (int i = 0; i < NUM_THREADS; i++)

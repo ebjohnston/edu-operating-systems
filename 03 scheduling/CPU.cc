@@ -83,7 +83,7 @@ ostream& operator << (ostream &os, struct PCB *pcb)
 /*
 ** an overloaded output operator that prints a list of PCBs
 */
-ostream& operator << (ostream &os, list<PCB *> which)
+ostream& operator << (ostream &os, list<PCB*> which)
 {
     list<PCB*>::iterator PCB_iter;
     for (PCB_iter = which.begin(); PCB_iter != which.end(); PCB_iter++)

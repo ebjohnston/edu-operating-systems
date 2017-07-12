@@ -21,7 +21,7 @@ void *foo (void *bar)
 
     pthread_mutex_lock(&mutex);
 
-    for (i = 0; i < *((int *) bar); i++)
+    for (i = 0; i < *((int*) bar); i++)
     {
         int tmp = i;
 
@@ -43,7 +43,7 @@ int main(int argc, char **argv)
 
     for (int i = 0; i < NUM_THREADS; i++)
     {
-        if (pthread_create(&threads[i], NULL, foo, (void *) &iterations))
+        if (pthread_create(&threads[i], NULL, foo, (void*) &iterations))
         {
             perror ("pthread_create");
             return (1);
@@ -52,7 +52,7 @@ int main(int argc, char **argv)
 
     for (int i = 0; i < NUM_THREADS; i++)
     {
-        void *status;
+        void* status;
         if (pthread_join (threads[i], &status))
         {
             perror ("pthread_join");

@@ -12,5 +12,5 @@ int main(int argc, char** argv)
         cout << "Process: " << getpid() << " " << i << "\n";
     }
 
-    exit(0);
+    exit(EXIT_SUCCESS);
 }
