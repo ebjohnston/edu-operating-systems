@@ -18,14 +18,14 @@
 
 int i;
 
-//pthread_mutex_t mutex;
+// pthread_mutex_t mutex;
 
 void *foo (void *bar)
 {
     pthread_t *me = new pthread_t (pthread_self());
     printf("in a foo thread, ID %ld\n", *me);
 
-    //pthread_mutex_lock(&mutex);
+    // assert(pthread_mutex_lock(&mutex) == 0);
 
     for (i = 0; i < *((int *) bar); i++)
     {
@@ -37,7 +37,7 @@ void *foo (void *bar)
         }
     }
 
-    //pthread_mutex_unlock(&mutex);
+    // assert(pthread_mutex_unlock(&mutex) == 0);
 
     pthread_exit (me);
 }
